@@ -1,36 +1,31 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ROTALY – Otel Rezervasyon Platformu
 
-## Getting Started
+Otel, villa, pansiyon ve diğer konaklama türleri için rezervasyon platformu.
 
-First, run the development server:
+## Kurulum
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. Bağımlılıkları yükleyin: `npm install` veya `pnpm install`
+2. Ortam değişkenlerini ayarlayın:
+   - `npm run setup` veya `pnpm run setup` ile `.env.example` dosyası `.env.local` olarak kopyalanır
+   - `.env.local` dosyasını düzenleyin ve aşağıdaki değerleri doldurun:
+     - `NEXT_PUBLIC_SUPABASE_URL` – Supabase proje URL’i
+     - `NEXT_PUBLIC_SUPABASE_ANON_KEY` – Supabase anon (public) key
+     - (İsteğe bağlı) `NEXT_PUBLIC_APP_LOCALE` – Varsayılan dil (`tr` veya `en`)
+3. Veritabanı şemasını Supabase’e uygulayın: `scripts/supabase-schema.sql` dosyasını Supabase SQL Editor’da çalıştırın
+4. Geliştirme sunucusunu başlatın: `npm run dev` veya `pnpm dev`
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Canlıya Geçmeden Önce
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `.env.local` (veya canlı ortamda kullanılan env) içinde `NEXT_PUBLIC_SUPABASE_URL` ve `NEXT_PUBLIC_SUPABASE_ANON_KEY` mutlaka tanımlı olmalı
+- Locale ve diğer ayarlar isteğe bağlı olarak env üzerinden verilebilir
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Özellikler
 
-## Learn More
+- **Genel:** Ana sayfa, arama, tesis detayı, rezervasyon akışı (bilgi → ödeme mock → başarı)
+- **Auth:** Giriş, kayıt, şifremi unuttum, ilk girişte şifre değiştirme (otel)
+- **Otel başvurusu:** İşletme başvuru formu; admin/support onay/red
+- **Admin:** Dashboard, tesisler, rezervasyonlar, kullanıcılar, otel başvuruları, destek, analitik, ayarlar
+- **Otel paneli:** Dashboard, tesislerim, odalar, rezervasyonlar, yorumlar, fiyatlandırma, raporlar, ayarlar
+- **Destek:** Dashboard, talepler, otel başvuruları, atananlar, acil talepler, kullanıcılar, raporlar, ayarlar
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.ss
+Ödeme adımında gerçek ödeme alınmaz; rezervasyon kaydı oluşturulur ve otel ciro takibinde “ödendi” olarak görünür.
